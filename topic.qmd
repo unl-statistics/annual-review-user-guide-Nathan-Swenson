@@ -4,3 +4,6 @@ Pick some subset of the information covered in your annual review article that y
 
 Identify the scope of your user guide - what will you cover? Specific software packages? When to use or not to use a specific technique?
 
+#User Guide on when to communicate using specific ways
+
+Going further on how they talk about "Communicating Uncertainty about Numerical Risks" I would go further in when to use the listed technicques. 
