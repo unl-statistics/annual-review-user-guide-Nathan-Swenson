@@ -7,3 +7,10 @@ Identify the scope of your user guide - what will you cover? Specific software p
 #User Guide on when to communicate using specific ways
 
 Going further on how they talk about "Communicating Uncertainty about Numerical Risks" I would go further in when to use the listed technicques. 
+
+::: callout-note
+# Comments/suggestions
+
+I highly suggest  you check out the `ggdibler` R package by one of my students at Monash University in Australia, Harriet Mason. It just won an award from the ASA, and it's generally a fantastic package for uncertainty communication. So you might evaluate how it fulfills some of the graphical methods for uncertainty communication, and where it doesn't help (graphics only go so far without words). 
+
+:::
