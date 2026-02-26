@@ -2,8 +2,20 @@
 
 What does someone trying to accomplish your chosen task need help with? 
 
+Someone that has collected data is not sure on how they should communicate their numerical risk to the given audience.
+
+--------------------------------------------------------
+
 What parts are likely to be tricky? 
+
+The reader would most likely find that their audience may have different perception of probablility and can easily misunderstand the numerical risk.
+
+--------------------------------------------------------
 
 What resources are already available on this topic that may be helpful? Look for e.g. software vignettes, package documentation, papers about software packages, and so on.
 
+"Risk Savvy, How to Make Good Decisions" by Gerd Gigerenzer gives background in the topic and would allow you to better understand how people perceive risk and what to recommend
 
+riskyr is a software package that would help with computing risk and visualizing scenarios. It has multiple resources such as a user guide, and has documentation of the functions for the package.
+
+ggdibbler would help with making graphics that are good at communicating risk and uncertainty. This would allow you to better communicate with the given audience alongside the numbers themselves.
