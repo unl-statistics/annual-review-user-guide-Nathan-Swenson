@@ -1,0 +1,105 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "User Guide: How to Communicate Numerical Risk",
+    "section": "",
+    "text": "Assignment Flow\nThis project is set up to scaffold this user guide and set you up for success.\nStart at topic.qmd and identify a topic for your user guide.\nOnce you’ve proposed a topic and received my approval/feedback, you can convert the contents of topic.qmd into an introductory paragraph in your report. Please leave the topic.qmd file as an appendix, to document the different stages of this project.\nOnce we’ve agreed on a topic for your user guide, you will proceed to needs.qmd and task-analysis.qmd. Both will be submitted at the same check-in, and both will be included in your final report as appendices. You should be able to re-purpose most of the information in task-analysis.qmd to orient the user to different components of the task you’ve chosen.\nYour next step is to actually write the content that satisfies the work you outlined in task-analysis.qmd.\nOnce you’re finished with that, ideally, you’ll have plenty of time to edit and streamline your report. Feel free to trade reports with a friend and try to complete your friend’s task - this will help you both identify areas where the guide isn’t as clear. Try to complete the task with a different data set - that often helps find trouble spots.\nWhen you submit your final report, you may remove index.qmd from the _quarto.yml file, which will remove this chapter (which is quite unnecessary for your user) from the report. You should also take the time to make sure your name is listed as both author and copyright holder in the _quarto.yml file. Feel free to make a custom cover for your manual if you would like to do so. You can also tweak the CSS/theme for the book, so long as you’re conscious of accessibility concerns.\n\n\n\n\n\n\nBuilding the report\n\n\n\nIf you are using RStudio to complete this report, you can hit (Ctrl/Cmd)-Shift-B to build the whole report. You can also type quarto render . on the command line in the project folder to accomplish the same thing.\nIf you have questions about how to customize or debug your book, it may be helpful to start at the quarto book documentation (Posit PBC 2024).\n\n\n\n\n\n\nPosit PBC. 2024. “Creating a Book. Quarto.” July 1, 2024. https://quarto.org/docs/books/.",
+    "crumbs": [
+      "Assignment Flow"
+    ]
+  },
+  {
+    "objectID": "guide.html",
+    "href": "guide.html",
+    "title": "1  How to Communicate Numerical Risk",
+    "section": "",
+    "text": "1.1 Motivation\nHow likely is it for communicated risk to be misunderstood? Due to risk mainly being meant to be communicated to specialists, it is likely for the average person to misunderstand the message.\nThere are a multitude of factors that impact how someone may see perceived risk: whether that would be words, whether the framing is positive or negative, and the vast ways of numerical outlets. Each of these factors have different nuances that make them more or less effective in certain situations. This can make it quite difficult to decide how to communicate, but there are 5 techniques that can be followed to ease the process.\nThis user guide is meant to give you an idea on how to apply each of the 5 listed techniques to a given data summary and find the best way to communicate this to a given audience.\nFrom this user guide you should be more equip with applying the techniques to a given audience.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to Communicate Numerical Risk</span>"
+    ]
+  },
+  {
+    "objectID": "guide.html#prerequisites",
+    "href": "guide.html#prerequisites",
+    "title": "1  How to Communicate Numerical Risk",
+    "section": "1.2 Prerequisites",
+    "text": "1.2 Prerequisites\nTo be able to complete this process you will need to have both R as well as RStudio installed. It will also be beneficial to have a basic understanding on how both function.\nTo be able to apply this process to other given datasets it is recommended to have an understanding how you can compare the given datasets. When applying the techniques it is important to understand your audience and apply the techniques accordingly. It is also assumed that the you have an understanding of distributions, and can apply the distributions for uncertainty.\nIt will also be understood that you have access to the pineappledata.csv in the github repository (https://github.com/unl-statistics/annual-review-user-guide-Nathan-Swenson).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to Communicate Numerical Risk</span>"
+    ]
+  },
+  {
+    "objectID": "guide.html#part-1-reading-in-and-summarizing-the-data",
+    "href": "guide.html#part-1-reading-in-and-summarizing-the-data",
+    "title": "1  How to Communicate Numerical Risk",
+    "section": "1.3 Part 1: Reading in and Summarizing the Data",
+    "text": "1.3 Part 1: Reading in and Summarizing the Data\nFor this process we are going to be looking on how to communicate the likelihood of a child turning into a pineapple in the first 5 days of watching Spongebob classic or modern, to the parents group The Pineapple Under the Sea using the given techniques. To do this we will be analyzing our dataset to find whether watching spongebob modern or spongebob classic is faster in turning a child into a pineapple within the first 5 days and make a graphic to help explain the results. This part is meant to generate the data and apply functions in order to give desired summaries.\n\nFirst you will need to read in the dataset. This will be used with our future functions, but can be substituted for another dataset.\n\n\n#This data is over kids that have watched spongebob classic or modern, and \n#how many days did it take for them to turn into a pineapple\n\n\npineappledata&lt;- read.csv(\"pineappledata.csv\")\n\n#Disclaimer no kids were turned into pineapples for this experiment\n\n\nSecond you will need to find the proportion in which a kid turns into a pineapple in the first 5 days, and find the difference of the 2 proportions. This will give us, which show is more likely to turn the child into a pineapple.\n\n\n#The following code is going to calculate the frequency of numbers from 1 to 5\n#in both the modern and classic colums\nmodern_proportion&lt;- sum(\n  pineappledata$modern &gt;= 1 & pineappledata$modern &lt;= 5)/\n  length(pineappledata$modern)\n\nclassic_proportion&lt;- sum(\n  pineappledata$classic &gt;= 1 & pineappledata$classic &lt;= 5)/\n  length(pineappledata$classic)\n\n#The following code calculates the difference between the 2\n#and prints out of the value\ndifference&lt;- classic_proportion - modern_proportion\n\nprint(difference)\n\n[1] 0.102\n\n#Note that if the first variable (classic_proportion) is positive that means \n#that it is more likely if negative than the other value is more likely\n\n\nThird we would like to calculate the p-value. This will allow us to find out whether the difference in proportions are significant.\n\n\n#The following code runs a chi-squared test where x = the number of successes \n#and n = the number of trials\n\npineapple_test&lt;- prop.test(\n  x=c(\n    sum(pineappledata$classic &gt;= 1 & pineappledata$classic &lt;= 5), \n    sum(pineappledata$modern &gt;= 1 & pineappledata$modern &lt;= 5)), \n  n = c(500, 500))\n\n#We only need the p-value from here so we will pull it out\nprint(p_value&lt;- pineapple_test$p.value)\n\n[1] 0.001559663\n\n#Note since our p-value is below 0.05 we can gather that it is significant.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to Communicate Numerical Risk</span>"
+    ]
+  },
+  {
+    "objectID": "guide.html#part-2-creating-graphics-from-the-summarized-data",
+    "href": "guide.html#part-2-creating-graphics-from-the-summarized-data",
+    "title": "1  How to Communicate Numerical Risk",
+    "section": "1.4 Part 2: Creating Graphics from the Summarized Data",
+    "text": "1.4 Part 2: Creating Graphics from the Summarized Data\nGraphics can greatly improve comphrension for risk and can be very effective when paired with verbal communication. This part is meant to help you visualize a graph that can compliment your communicated risk.\n\nFirst you will need to install and load the given packages. These packages will be used in data manipulation and the graph generation.\n\n\n#Installs distributional\ninstall.packages(\"distributional\")\n\n#Installs dplyr\ninstall.packages(\"dplyr\")\n\n#Installs ggdibbler\ninstall.packages(\"ggdibbler\", dep=TRUE)\n\n#Installs ggplot2\ninstall.packages(\"ggplot2\")\n\n#Installs tidyr\ninstall.packages(\"tidyr\")\n\n#distributional is a R package that allows distributions to be used in vectors. \n#We will be using this package to calculate uncertainty in our graph.\n\n#dplyr is a R package that allows for data manipulation. We will be mainly \n#using the group_by and mutate function\n\n#ggdibbler is a R package that allows you to create graphics using uncertain \n#variables, so you will be able to more clearly document data. \n#This package will be used to visualize the given data.\n\n#ggplot is a R package meant for data visualization. This is going to be used \n#alongside ggdibbler and distributional to create our graph.\n\n#tidyr is a R package that helps with cleaning data.\n\n\nSecond you will need to get the distributional variables, so we can communicate the uncertainty in the graph. a\n\n\n#Loads dplyr\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n#Loads tidyr\nlibrary(tidyr)\n\n#Loads Distributional\nlibrary(distributional)\n\n#This function will allows us to adjust the columns and rows\npineappledata&lt;- pivot_longer(pineappledata, 1:2,  \n                             names_to = \"Spongebob\", \n                             values_to = \"Days\")\n\n#The following code will give us a table of proportions\npineappledata&lt;- pineappledata |&gt; group_by(Spongebob)\n\nprop&lt;- as.data.frame(prop.table(table(pineappledata)))\n\n#The following code will create a distribution variable using our proportion \n#table for both the modern and the classic show\nmodern_dist &lt;- dist_categorical(\n  list(c(prop$Freq[prop$Spongebob == \"modern\"]))\n)\n\nclassic_dist &lt;- dist_categorical(\n  list(c(prop$Freq[prop$Spongebob == \"classic\"]))\n)\n\n#This function adds another column to our pineapple data, this column is \n#going to store our distribution variables to the respective shows\npineappledata &lt;- pineappledata |&gt;\n  mutate(\n    Day_dist = if_else(Spongebob == \"modern\",\n                       modern_dist,\n                       classic_dist)\n  )\n\n\nFinally we will be creating our graph.\n\n\n#Loads ggdibbler\nlibrary(\"ggdibbler\")\n\n#Loads ggplot2\nlibrary(\"ggplot2\")\n\n#This function allows us to create a bar chart, where we can see the \n#frequencies for each of the days in each show \n#(Modern is filled in Orange, Classic is filled in Blue)\nggplot(pineappledata, aes(x=Day_dist)) +\n  geom_bar_sample(\n    aes(fill = Spongebob),\n    alpha = 0.1,\n    position = \"dodge_identity\") +\n    scale_fill_manual(values = c(\"modern\" = \"#0072B2\", \n                                 \"classic\" = \"#E69F00\")) +\n  ggtitle(\"Children become Pineapple\") +\n    theme()+\n  labs(\n    x = \"Days\",\n    fill = \"Show\"\n  )\n\n\n\n\n\n\n\n#The bars start fading out to map out for uncertainty. This is important \n#because our data would be difficult to properly increment each day correctly.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to Communicate Numerical Risk</span>"
+    ]
+  },
+  {
+    "objectID": "guide.html#part-3-applying-the-techniques-and-communicating-to-your-audience",
+    "href": "guide.html#part-3-applying-the-techniques-and-communicating-to-your-audience",
+    "title": "1  How to Communicate Numerical Risk",
+    "section": "1.5 Part 3: Applying the techniques and communicating to your audience",
+    "text": "1.5 Part 3: Applying the techniques and communicating to your audience\nNow that we have gathered the desired summary and mapped it into a graphic we now need to actually communicate this to an audience.\n\nFirst we need to consider our audience.\n\nOur audience is the parents of the children. We can gather from their name that they are more than likely fans of Spongebob.\n\nSecond we need to apply the given techniques to decide what would be the best way to communicate it.\n\nGoing through the 5 levels we can check each mark off.\n\nThe 10.2% compared to using 10% is fairly negligable.\nThe distribution is roughly normal meaning that we it is most frequent for a child to become a pineapple at around 5 days.\nFrom the given graphic we can gather that with the fading the uncertainty may range, but it is mostly going to be consistent. Our p-value that we had gotten (0.0016) is significant so we can determine that there is a difference between the 2 shows.\nWe will want to share the actual percentages.\nThe confidence level is significant, so we can report the data as given.\n\n\nFinally we need to formulate our graphic and message in a cohesive manner.\n\nOur study finds the length in both the classic and modern Spongebob TV show turn a child into a pineapple. We had found that when watching in 15 days the child will become a pineapple. From the data we can report that by watching the classic however, your child is 10% more likely to become a pineapple rather than modern spongebob (p-val = 0.0016). The graphic represents the amount of days it took for each of the shows and the height being the density across 500 observations for each. The fading of the graph accounts for misreporting. From watching classic you can see that you are going to see a higher frequency at about 5 days.\n\n\n\n\nSpiegelhalter, David. 2017. “Risk and Uncertainty Communication.” Annual Review of Statistics and Its Application 4 (Volume 4, 2017): 31–60. https://doi.org/10.1146/annurev-statistics-010814-020148.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to Communicate Numerical Risk</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Posit PBC. 2024. “Creating a Book. Quarto.” July 1, 2024.\nhttps://quarto.org/docs/books/.\n\n\nSpiegelhalter, David. 2017. “Risk and Uncertainty\nCommunication.” Annual Review of Statistics and Its\nApplication 4 (Volume 4, 2017): 31–60. https://doi.org/10.1146/annurev-statistics-010814-020148.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "topic.html",
+    "href": "topic.html",
+    "title": "Appendix A — Topic",
+    "section": "",
+    "text": "Pick some subset of the information covered in your annual review article that you are interested in exploring in more detail.\nIdentify the scope of your user guide - what will you cover? Specific software packages? When to use or not to use a specific technique?\n#User Guide on when to communicate using specific ways\nGoing further on how they talk about “Communicating Uncertainty about Numerical Risks” I would go further in when to use the listed technicques.\n\n\n\n\n\n\nComments/suggestions\n\n\n\nI highly suggest you check out the ggdibler R package by one of my students at Monash University in Australia, Harriet Mason. It just won an award from the ASA, and it’s generally a fantastic package for uncertainty communication. So you might evaluate how it fulfills some of the graphical methods for uncertainty communication, and where it doesn’t help (graphics only go so far without words).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Topic</span>"
+    ]
+  },
+  {
+    "objectID": "needs.html",
+    "href": "needs.html",
+    "title": "Appendix B — Needs Assessment",
+    "section": "",
+    "text": "What does someone trying to accomplish your chosen task need help with?\nSomeone that has collected data is not sure on how they should communicate their numerical risk to the given audience.\n\nWhat parts are likely to be tricky?\nThe reader would most likely find that their audience may have different perception of probablility and can easily misunderstand the numerical risk.\n\nWhat resources are already available on this topic that may be helpful? Look for e.g. software vignettes, package documentation, papers about software packages, and so on.\n“Risk Savvy, How to Make Good Decisions” by Gerd Gigerenzer gives background in the topic and would allow you to better understand how people perceive risk and what to recommend\nriskyr is a software package that would help with computing risk and visualizing scenarios. It has multiple resources such as a user guide, and has documentation of the functions for the package.\nggdibbler would help with making graphics that are good at communicating risk and uncertainty. This would allow you to better communicate with the given audience alongside the numbers themselves.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Needs Assessment</span>"
+    ]
+  },
+  {
+    "objectID": "task-analysis.html",
+    "href": "task-analysis.html",
+    "title": "Appendix C — Task Analysis",
+    "section": "",
+    "text": "C.1 Additional Guidance\nHere are some questions to guide you through the process of doing a task analysis. You don’t have to specifically answer each one of these (and some may not apply), but they should get you started thinking in the right direction.\nWhat are the prerequisites, for both knowledge and e.g. software setup?\nSome prequisites would have some sort of understanding of the structure of their data and understand who their audience is.\nFor software setup it would be important to have r as well as rstudio installed.\nWhat are the basic requirements for any data that the method is used on? - Are missing values allowed? It would depend on if the missing values would negatively impact the overall reliability of the data - Should the data be confined within a certain range? The user topic is on communicating and analyzing risk so the range would not be confined. - Does the data have to be approximately normally distributed? The data would not need to be normally distributed because the distribution does not impact whether or not you can calculate risk.\nWhat are the basic components of the task? - Outline these in a bit more detail\nDownloading related packages (riskyr and ggdibbler), as well as reading in the given dataset (synthetic).\nApply the given riskyr functions to find the given risk (Generates the risk of getting a disease from a given action)\nApply the 5 levels of precision mentioned in the annual review article (Numbers given to appropriate levels of prevision, A distribution or range, A measure of stiatistical significance compared with a null hypothesis, verbal qualifers to numbers, and refusal to give a number unless the evidence is good enough.\nApply the given ggdibbler functions to construct a graphic to give a visual refrence to enhance the effects of the 5 levels of precision\nWhat decisions does the user need to be prepared to make on the fly?\nThe user will need to be prepared to identify how to apply the 5 levels of precision and decide where it is necessary to implement that into their own design.\nThe user will need to have to be able to install the given packages’s dependencies.\nThe user will need to decide how they would like to implement their graphics into ggdibbler\nWhat questions should the user ask of the “first draft” of the product? What adjustments may need to be made?\nUsing more adaptable data\nGoing further into the 5 levels of precision\nUsing more examples in ggdibbler to help with variety\nYour check-in should answer these basic questions (and similar concerns that apply more directly to your topic).\nOnce you’ve completed the check-in, you can use this section to jump-start an introduction/set-up/getting started section in your user guide. This document should remain as an appendix to your main report.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Task Analysis</span>"
+    ]
+  }
+]
