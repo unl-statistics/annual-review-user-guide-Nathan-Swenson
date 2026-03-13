@@ -1,0 +1,37 @@
+# Nathan
+
+- I'm moving files around to get rid of the assignment flow chapter (which is internal documentation but not necessary now).
+
+- You'd benefit from having an introduction and then separate parts. If you want the introduction can just not have a number (add {-} to the # header name {-} line to suppress numbering). Then you can remove part X: from the name of each chapter -- put each one in a separate file, update _quarto.yml to include the names of those files. This will make things much nicer on the TOC side, and help your user navigate more easily.
+
+- "Due to risk mainly being meant to be communicated to specialists, it is likely for the average person to misunderstand the message." -- grammar check please. Also slightly too informal.
+
+- "whether that would be words, whether the framing is positive or negative, and the vast ways of numerical outlets" this doesn't make a lot of sense. "The presentation, framing as positive or negative, and numerical construction of the risk estimate can all impact the perceived risk." might be a clearer way to phrase things. Then, skip straight to "This can make it..."
+
+- Phrase your 5 techniques as imperative, e.g. "Give numbers to an appropriate level of precision" "Provide a distribution or range", "Provide a measure of statistical significance compared to the null hypothesis", ...
+
+- Check for missed words, like "It can beneficial when working with p-values and standard errors to" -- it can be beneficial
+
+- Phrase in active voice: "This can be helpful when paired with graphics." is passive, "Pairing statistical significance with appropriately chosen graphics will increase reader comprehension."
+
+- "From this user guide you should be more equip with applying the techniques to a given audience." -> "This user guide will help you apply these techniques when communicating with the general population."
+
+- Link the data into the document, don't refer them to the github repository. You can link directly to the file in the repository to make it easier.
+
+- Discuss the necessary characteristics of datasets used to do this task. What assumptions are you making? What types of data will work here?
+
+- Move comments outside of the code chunk and integrate the text into your narrative.
+
+- Motivation - be more explicit about what the goal is for the user guide -- perhaps by just moving the header up to the top of that section instead of having unlabeled text? It's bad form to talk about "5 listed techniques" without having them immediately prior in the same section.
+
+- I find your dataset confusing. I'm assuming it's simulated, but you don't say that, and in any case it doesn't make much sense. Can you use even some basic data set in another R package to demonstrate your techniques?
+
+- Using bullets in part 3 seems ineffective. Can you instead structure this as "We now need to examine the best way to communicate this uncertainty to our audience. It helps to explicitly consider the following factors:"
+    - Audience: Parents of children who watch Spongebob
+    - Techniques:
+        1. xxx
+        2. yyy
+        3. zzz
+        4. aaa
+        5. bbb
+    - Graphic Design: Use the graphic design principles above to create ...
