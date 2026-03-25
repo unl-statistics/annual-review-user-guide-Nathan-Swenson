@@ -1,0 +1,38 @@
+#- Generating and Summarizing Data
+
+For this process we have 2 new treatments and when taken both of them will see improvement within the first 15 days. Our company wants to find, which one is more likely to see improvement within the first 5 days. Using the given [techniques](#sec-tech) we want to communicate, which one is more likely within the given timespace. To do this we will be analyzing a simulated dataset on both treatments, which contains participants in each treatment group(Trt) and how long it takes for them to see improvements(Days)
+
+-   First we will need to read in the dataset. This will be used with our future functions, but can be substituted for another dataset. This dataset uses 2 discrete variables, but you are able to use one discrete and one continuous as well. 
+
+```{r}
+trtdata<- read.csv("http://raw.githubusercontent.com/unl-statistics/annual-review-user-guide-Nathan-Swenson/main/trtdata.csv")
+```
+
+- Second we will need to find the proportion in which each treatment sees improvement in the first 5 days, and then we will find the difference of the 2 proportions. This will give us which treatment is more effective.
+
+```{r}
+
+Trt2_proportion<- sum(
+  trtdata$Days[trtdata$Trt == "Trt2"] >= 1 & trtdata$Days[trtdata$Trt == "Trt2"] <= 5)/
+  length(trtdata$Days[trtdata$Trt == "Trt2"])
+
+Trt1_proportion<- sum(
+  trtdata$Days[trtdata$Trt == "Trt1"] >= 1 & trtdata$Days[trtdata$Trt == "Trt1"] <= 5)/
+  length(trtdata$Days[trtdata$Trt == "Trt2"])
+
+difference<- Trt1_proportion - Trt2_proportion
+
+print(difference)
+```
+
+- Third we would like to calculate the p-value. This will allow us to find out whether the difference in proportions are significant. To do this we will run chi-squared test and then index the p_value. (where x is where it was within the first 5 days and n is number of observations for each)
+
+```{r}
+trt_test<- prop.test(
+  x=c(
+    sum(trtdata$Days[trtdata$Trt == "Trt1"] >= 1 & trtdata$Days[trtdata$Trt == "Trt1"] <= 5), 
+    sum(trtdata$Days[trtdata$Trt == "Trt2"] >= 1 & trtdata$Days[trtdata$Trt == "Trt2"] <= 5)), 
+  n = c(500, 500))
+
+print(p_value<- trt_test$p.value)
+```

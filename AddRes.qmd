@@ -1,0 +1,16 @@
+# Additional Resources
+
+#distributional is a R package that allows distributions to be used in vectors. 
+#We will be using this package to calculate uncertainty in our graph.
+
+#dplyr is a R package that allows for data manipulation. We will be mainly 
+#using the group_by and mutate function
+
+#ggdibbler is a R package that allows you to create graphics using uncertain 
+#variables, so you will be able to more clearly document data. 
+#This package will be used to visualize the given data.
+
+#ggplot is a R package meant for data visualization. This is going to be used 
+#alongside ggdibbler and distributional to create our graph.
+
+#tidyr is a R package that helps with cleaning data.
