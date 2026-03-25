@@ -1,14 +1,14 @@
-# Creating Graphics from the Summarized Data
+# Creating Graphics from the Summarized Data {#sec-graph}
 
 ```{r, echo = FALSE}
-trtdata<- read.csv("http://raw.githubusercontent.com/unl-statistics/annual-review-user-guide-Nathan-Swenson/main/trtdata.csv")
+trtdata<- read.csv("trtdata.csv")
 ```
 
-Graphics can greatly improve comphrension of risk and can be very effective when paired with verbal communication. This part is meant to help you visualize a graph that can compliment your communicated risk.
+Graphics can greatly improve comprehension of risk and can be very effective when paired with verbal communication. This section will help you visualize a graph that can complement your communicated risk.
 
-- First you will need to install and load the given packages. These packages will be used in data manipulation and the graph generation. We will mainly be working with ggdibbler and ggplot
+- First, you will need to install and load the following packages. These packages will be used in data manipulation and the plot generation.
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 install.packages("distributional")
 
 install.packages("dplyr")
@@ -18,9 +18,9 @@ install.packages("ggdibbler", dep=TRUE)
 install.packages("ggplot2")
 ```
 
-- Second you will need to get the distributional variables, so we can communicate the uncertainty in the graph. To do this we will create a table of the proportions so we can create the distribute for each treatment type.
+- Second, you will need to get the distributional variables, so we can graph the variability in the graph. To do this we will create a table of the proportions so we can create the distribute for each treatment type.
 
-```{r, eval=FALSE}
+```{r, echo=FALSE}
 
 library(dplyr)
 library(distributional)
@@ -44,7 +44,8 @@ trtdata <- trtdata |>
   )
 ```
 
-- Finally we will be creating our graph. We will be creating a bar chart and we will be using Blue and Orange to map the treatments. The fading represents the variance of how many participants see improvements on the given day.
+
+- Finally, we will be creating our graph. We will be creating a bar chart, mapping the treatments to orange and blue. The fading represents the variance of how many participants see improvements on the given day.
 
 ```{r}
 library("ggdibbler")

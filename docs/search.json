@@ -1,0 +1,125 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "User Guide: How to Communicate Numerical Risk",
+    "section": "",
+    "text": "1 Introduction\nHow likely is it for communicated risk to be misunderstood? Risk communication is meant for technical specialists, making it foreign to the average person by design.\nThe presentation, framing as positive or negative, and numerical construction of the risk estimate can all impact the perceived risk. This can make it difficult to decide how to communicate to the general population. This user guide is meant to give you an idea on how to apply techniques to efficiently communicate to a given audience.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#motivation",
+    "href": "index.html#motivation",
+    "title": "User Guide: How to Communicate Numerical Risk",
+    "section": "1.1 Motivation",
+    "text": "1.1 Motivation\nThis user guide is meant to improve your abilities to sumarize and communicate a data summary to a given audience.\nThis user guide will help you apply the following techniques when communicating with the general population:\n\n1.1.1 Techniques\n\n1.1.1.1 1. Numbers given to appropriate levels of precision.\nRound numbers to simplify frequencies to make them more easily understood. This should only be done if the percentage difference is negligible (saying 10% instead of 10.2%) Spiegelhalter (2017) . Instances may vary\n\n\n1.1.1.2 2. A distribution or range.\nFactor in distributions and ranges to better communicate risk. For example if there is a normally distributed data set, it would be beneficial to say it ranges from a to b, with being more likely to be in the middle Dieckmann, Peters, and Gregory (2015).\n\n\n1.1.1.3 3. A measure of statistical significance compared with a null hypothesis.\nCommunicate p-values and comparisons for different levels to improve comprehension for a given distribution. By providing graphics, it will increase comprehension.\n\n\n1.1.1.4 4. Verbal qualifiers to numbers.\nAvoid using verbal qualifiers (slightly, likely, unlikely, etc), they appear vague and lead to misinterpretation. In a study there were two groups verbal and numerical, the verbal descriptors had shown to have higher percentage of a given disease Knapp, Raynor, and Berry (2004). It is more effective to communicate using the data or using the qualifiers in addition to the data Spiegelhalter (2017).\n\n\n1.1.1.5 5. A refusal to give a number unless the evidence is good enough.\nFrame numbers in correspondence to statistical significance. If a reported confidence level is not strong do not assign numerical probabilities Spiegelhalter (2017).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#prerequisites",
+    "href": "index.html#prerequisites",
+    "title": "User Guide: How to Communicate Numerical Risk",
+    "section": "1.2 Prerequisites",
+    "text": "1.2 Prerequisites\nTo be able to complete this process you will need to have both R and RStudio installed. It will be beneficial to have a basic understanding on how both function.\nTo be able to apply this process to other given data sets it is recommended to have an understanding in comparing data sets. When applying techniques it is important to understand your audience and apply the techniques accordingly. It is also assumed that you have an understanding of distributions, and can apply the distributions for uncertainty.\n\n\n\n\nDieckmann, Nathan F., Ellen Peters, and Robin Gregory. 2015. “At Home on the Range? Lay Interpretations of Numerical Uncertainty Ranges.” Risk Analysis 35 (7): 1281–95. https://doi.org/10.1111/risa.12358.\n\n\nKnapp, P., D. K. Raynor, and D. C. Berry. 2004. “Comparison of Two Methods of Presenting Risk Information to Patients about the Side Effects of Medicines.” BMJ Quality & Safety 13 (3): 176–80. https://doi.org/10.1136/qshc.2003.009076.\n\n\nSpiegelhalter, David. 2017. “Risk and Uncertainty Communication.” Annual Review of Statistics and Its Application 4 (Volume 4, 2017): 31–60. https://doi.org/10.1146/annurev-statistics-010814-020148.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "generating.html",
+    "href": "generating.html",
+    "title": "2  Generating and Summarizing Data",
+    "section": "",
+    "text": "For this process we have 2 new treatments, when taken a patient will see improvement within 15 days. Our company wants to find which one is more likely to see improvement within the first 5 days. Using the given techniques, we want to communicate which one is more likely within the given timeframe. To do this we will be analyzing a simulated data set on the treatments, which contains participants in each treatment group(Trt) and how long it takes for them to see improvements(Days)\n\nFirst, we will need to read in the data set. This will be used with our future functions, but can be substituted by another data set. This data set uses two discrete variables, but you are able to use one discrete and one continuous as well.\n\n\ntrtdata&lt;- read.csv(\"http://raw.githubusercontent.com/unl-statistics/annual-review-user-guide-Nathan-Swenson/main/trtdata.csv\")\n\n\nSecond, we will need to find the proportion in which each treatment sees improvement in the first 5 days, and then we will find the difference of the 2 proportions. This will give us the more effective treatment.\n\n\nTrt2_proportion&lt;- sum(\n  trtdata$Days[trtdata$Trt == \"Trt2\"] &gt;= 1 & \n    trtdata$Days[trtdata$Trt == \"Trt2\"] &lt;= 5)/\n  length(trtdata$Days[trtdata$Trt == \"Trt2\"])\n\nTrt1_proportion&lt;- sum(\n  trtdata$Days[trtdata$Trt == \"Trt1\"] &gt;= 1 & \n    trtdata$Days[trtdata$Trt == \"Trt1\"] &lt;= 5)/\n  length(trtdata$Days[trtdata$Trt == \"Trt1\"])\n\ndifference&lt;- Trt1_proportion - Trt2_proportion\n\nprint(difference)\n\n[1] 0.102\n\n\n\nThird, we would like to calculate the p-value. This will allow us to determine whether there is a significant difference of proportions. To do this we will run a chi-squared test and then index the p_value. (where x is the treatment within the first 5 days and n is number of observations for each)\n\n\ntrt_test&lt;- prop.test(\n  x=c(\n    sum(trtdata$Days[trtdata$Trt == \"Trt1\"] &gt;= 1 & \n          trtdata$Days[trtdata$Trt == \"Trt1\"] &lt;= 5), \n    sum(trtdata$Days[trtdata$Trt == \"Trt2\"] &gt;= 1 & \n          trtdata$Days[trtdata$Trt == \"Trt2\"] &lt;= 5)), \n  n = c(500, 500))\n\nprint(p_value&lt;- trt_test$p.value)\n\n[1] 0.001559663",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Generating and Summarizing Data</span>"
+    ]
+  },
+  {
+    "objectID": "plotting.html",
+    "href": "plotting.html",
+    "title": "3  Creating Graphics from the Summarized Data",
+    "section": "",
+    "text": "Graphics can greatly improve comprehension of risk and can be very effective when paired with verbal communication. This section will help you visualize a graph that can complement your communicated risk.\n\nFirst, you will need to install and load the following packages. These packages will be used in data manipulation and the plot generation.\n\n\nSecond, you will need to get the distributional variables, so we can graph the variability in the graph. To do this we will create a table of the proportions so we can create the distribute for each treatment type.\n\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\nFinally, we will be creating our graph. We will be creating a bar chart, mapping the treatments to orange and blue. The fading represents the variance of how many participants see improvements on the given day.\n\n\nlibrary(\"ggdibbler\")\nlibrary(\"ggplot2\")\n\nggplot(trtdata, aes(x=Day_dist)) +\n  geom_bar_sample(\n    aes(fill = Trt),\n    alpha = 0.1,\n    position = \"dodge_identity\") +\n    scale_fill_manual(values = c(\"Trt2\" = \"#0072B2\", \n                                 \"Trt1\" = \"#E69F00\")) +\n  ggtitle(\"Improvements Occur over Days\") +\n    theme()+\n  labs(\n    x = \"Days\",\n    fill = \"Trt\"\n  )",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Creating Graphics from the Summarized Data</span>"
+    ]
+  },
+  {
+    "objectID": "conclusion.html",
+    "href": "conclusion.html",
+    "title": "4  Applying the techniques and communicating to your audience",
+    "section": "",
+    "text": "Now that we have completed the data summary and plot, we now need to communicate this to an audience. We should consider the following\n\nAudience:\n\nOur audience is our executive board, so it would be effective to frame it in a positive way.\n\nTechniques:\n\n\nWhen applying the first technique, 10.2% compared to 10% is negligible.\nThe distribution is roughly normal meaning that it is most frequent for a patient to see improvement at around 5 days.\nFrom the given graphic, we can gather that with the fading, the uncertainty may range, but it is mostly going to be consistent. Our p-value that we had found (0.0016) is significant so we can determine that there is a difference between the two shows.\nWe will want to share the actual percentages.\nThe confidence level is significant, so we can report the data as given.\n\n\nFinally, we need to formulate our graphic and message in a cohesive manner.\n\nOur study covers the time it takes to see improvement in a patient when given one of two treatment types. From the data we can report that treatment 1 had shown improvements faster at a rate of 10% higher than treatment 2 (p-val = 0.0016). The graphic represents the amount of days it took for each treatment, as well as the height being the density across 500 observations for each. The fading of the graph accounts for the variability.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Applying the techniques and communicating to your audience</span>"
+    ]
+  },
+  {
+    "objectID": "AddRes.html",
+    "href": "AddRes.html",
+    "title": "5  Additional Resources",
+    "section": "",
+    "text": "5.1 ggdibbler\nGgdibbler is an R package that allows you to create graphics using uncertainty variables. We used this package in demonstrating the variability of each treatment in the graphic section This resource has access to other functions that would help you implement variability in many different graphs. Mason et al. (2025)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Additional Resources</span>"
+    ]
+  },
+  {
+    "objectID": "AddRes.html#distributional",
+    "href": "AddRes.html#distributional",
+    "title": "5  Additional Resources",
+    "section": "5.2 distributional",
+    "text": "5.2 distributional\nDistributional is an R package that allows you to put distributions in cells of vector. This package was used in tandem with ggdibbler and it is the foundation of ggdibbler. This resource has access to many functions to support ggdibbler graphs. O’Hara-Wild et al. (2026)\n\n\n\n\nMason, Harriet, Dianne Cook [aut, ths, Sarah Goodwin, and Susan VanderPlas. 2025. Ggdibbler: Add Uncertainty to Data Visualisations. https://cran.r-project.org/web/packages/ggdibbler/index.html.\n\n\nO’Hara-Wild, Mitchell, Matthew Kay, Alex Hayes, Rob Hyndman, Earo Wang, and Vencislav Popov. 2026. Distributional: Vectorised Probability Distributions. https://cran.r-project.org/web/packages/distributional/index.html.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Additional Resources</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Dieckmann, Nathan F., Ellen Peters, and Robin Gregory. 2015. “At\nHome on the Range? Lay Interpretations of Numerical Uncertainty\nRanges.” Risk Analysis 35 (7): 1281–95. https://doi.org/10.1111/risa.12358.\n\n\nKnapp, P., D. K. Raynor, and D. C. Berry. 2004. “Comparison of Two\nMethods of Presenting Risk Information to Patients about the Side\nEffects of Medicines.” BMJ Quality & Safety 13 (3):\n176–80. https://doi.org/10.1136/qshc.2003.009076.\n\n\nMason, Harriet, Dianne Cook [aut, ths, Sarah Goodwin, and Susan\nVanderPlas. 2025. Ggdibbler: Add Uncertainty to Data\nVisualisations. https://cran.r-project.org/web/packages/ggdibbler/index.html.\n\n\nO’Hara-Wild, Mitchell, Matthew Kay, Alex Hayes, Rob Hyndman, Earo Wang,\nand Vencislav Popov. 2026. Distributional: Vectorised Probability\nDistributions. https://cran.r-project.org/web/packages/distributional/index.html.\n\n\nSpiegelhalter, David. 2017. “Risk and Uncertainty\nCommunication.” Annual Review of Statistics and Its\nApplication 4 (Volume 4, 2017): 31–60. https://doi.org/10.1146/annurev-statistics-010814-020148.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "topic.html",
+    "href": "topic.html",
+    "title": "Appendix A — Topic",
+    "section": "",
+    "text": "Pick some subset of the information covered in your annual review article that you are interested in exploring in more detail.\nIdentify the scope of your user guide - what will you cover? Specific software packages? When to use or not to use a specific technique?\n#User Guide on when to communicate using specific ways\nGoing further on how they talk about “Communicating Uncertainty about Numerical Risks” I would go further in when to use the listed technicques.\n\n\n\n\n\n\nComments/suggestions\n\n\n\nI highly suggest you check out the ggdibler R package by one of my students at Monash University in Australia, Harriet Mason. It just won an award from the ASA, and it’s generally a fantastic package for uncertainty communication. So you might evaluate how it fulfills some of the graphical methods for uncertainty communication, and where it doesn’t help (graphics only go so far without words).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Topic</span>"
+    ]
+  },
+  {
+    "objectID": "needs.html",
+    "href": "needs.html",
+    "title": "Appendix B — Needs Assessment",
+    "section": "",
+    "text": "What does someone trying to accomplish your chosen task need help with?\nSomeone that has collected data is not sure on how they should communicate their numerical risk to the given audience.\n\nWhat parts are likely to be tricky?\nThe reader would most likely find that their audience may have different perception of probablility and can easily misunderstand the numerical risk.\n\nWhat resources are already available on this topic that may be helpful? Look for e.g. software vignettes, package documentation, papers about software packages, and so on.\n“Risk Savvy, How to Make Good Decisions” by Gerd Gigerenzer gives background in the topic and would allow you to better understand how people perceive risk and what to recommend\nriskyr is a software package that would help with computing risk and visualizing scenarios. It has multiple resources such as a user guide, and has documentation of the functions for the package.\nggdibbler would help with making graphics that are good at communicating risk and uncertainty. This would allow you to better communicate with the given audience alongside the numbers themselves.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Needs Assessment</span>"
+    ]
+  },
+  {
+    "objectID": "task-analysis.html",
+    "href": "task-analysis.html",
+    "title": "Appendix C — Task Analysis",
+    "section": "",
+    "text": "C.1 Additional Guidance\nHere are some questions to guide you through the process of doing a task analysis. You don’t have to specifically answer each one of these (and some may not apply), but they should get you started thinking in the right direction.\nWhat are the prerequisites, for both knowledge and e.g. software setup?\nSome prequisites would have some sort of understanding of the structure of their data and understand who their audience is.\nFor software setup it would be important to have r as well as rstudio installed.\nWhat are the basic requirements for any data that the method is used on? - Are missing values allowed? It would depend on if the missing values would negatively impact the overall reliability of the data - Should the data be confined within a certain range? The user topic is on communicating and analyzing risk so the range would not be confined. - Does the data have to be approximately normally distributed? The data would not need to be normally distributed because the distribution does not impact whether or not you can calculate risk.\nWhat are the basic components of the task? - Outline these in a bit more detail\nDownloading related packages (riskyr and ggdibbler), as well as reading in the given dataset (synthetic).\nApply the given riskyr functions to find the given risk (Generates the risk of getting a disease from a given action)\nApply the 5 levels of precision mentioned in the annual review article (Numbers given to appropriate levels of prevision, A distribution or range, A measure of stiatistical significance compared with a null hypothesis, verbal qualifers to numbers, and refusal to give a number unless the evidence is good enough.\nApply the given ggdibbler functions to construct a graphic to give a visual refrence to enhance the effects of the 5 levels of precision\nWhat decisions does the user need to be prepared to make on the fly?\nThe user will need to be prepared to identify how to apply the 5 levels of precision and decide where it is necessary to implement that into their own design.\nThe user will need to have to be able to install the given packages’s dependencies.\nThe user will need to decide how they would like to implement their graphics into ggdibbler\nWhat questions should the user ask of the “first draft” of the product? What adjustments may need to be made?\nUsing more adaptable data\nGoing further into the 5 levels of precision\nUsing more examples in ggdibbler to help with variety\nYour check-in should answer these basic questions (and similar concerns that apply more directly to your topic).\nOnce you’ve completed the check-in, you can use this section to jump-start an introduction/set-up/getting started section in your user guide. This document should remain as an appendix to your main report.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Task Analysis</span>"
+    ]
+  }
+]

@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nathan Swenson">
 <meta name="dcterms.date" content="2026-03-25">
 
-<title>User Guide: How to Communicate Numerical Risk</title>
+<title>2&nbsp; Generating and Summarizing Data – User Guide: How to Communicate Numerical Risk</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,27 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -52,7 +65,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./generating.html" rel="next">
+<link href="./plotting.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +116,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./generating.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Generating and Summarizing Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -129,13 +143,13 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./generating.html" class="sidebar-item-text sidebar-link">
+  <a href="./generating.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Generating and Summarizing Data</span></span></a>
   </div>
 </li>
@@ -197,40 +211,21 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
-  <ul class="collapse">
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><span class="header-section-number">1.1</span> Motivation</a>
-  <ul class="collapse">
-  <li><a href="#sec-tech" id="toc-sec-tech" class="nav-link" data-scroll-target="#sec-tech"><span class="header-section-number">1.1.1</span> Techniques</a></li>
-  </ul></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">1.2</span> Prerequisites</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">User Guide: How to Communicate Numerical Risk</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Generating and Summarizing Data</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Nathan Swenson </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -247,57 +242,53 @@ div.csl-indent {
 </header>
 
 
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>How likely is it for communicated risk to be misunderstood? Risk communication is meant for technical specialists, making it foreign to the average person by design.</p>
-<p>The presentation, framing as positive or negative, and numerical construction of the risk estimate can all impact the perceived risk. This can make it difficult to decide how to communicate to the general population. This user guide is meant to give you an idea on how to apply techniques to efficiently communicate to a given audience.</p>
-<section id="motivation" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">1.1</span> Motivation</h2>
-<p>This user guide is meant to improve your abilities to sumarize and communicate a data summary to a given audience.</p>
-<p>This user guide will help you apply the following techniques when communicating with the general population:</p>
-<section id="sec-tech" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="sec-tech"><span class="header-section-number">1.1.1</span> Techniques</h3>
-<section id="numbers-given-to-appropriate-levels-of-precision." class="level4" data-number="1.1.1.1">
-<h4 data-number="1.1.1.1" class="anchored" data-anchor-id="numbers-given-to-appropriate-levels-of-precision."><span class="header-section-number">1.1.1.1</span> 1. <em>Numbers given to appropriate levels of precision.</em></h4>
-<p>Round numbers to simplify frequencies to make them more easily understood. This should only be done if the percentage difference is negligible (saying 10% instead of 10.2%) <span class="citation" data-cites="spiegelhalter2017">Spiegelhalter (<a href="references.html#ref-spiegelhalter2017" role="doc-biblioref">2017</a>)</span> . Instances may vary</p>
-</section>
-<section id="a-distribution-or-range." class="level4" data-number="1.1.1.2">
-<h4 data-number="1.1.1.2" class="anchored" data-anchor-id="a-distribution-or-range."><span class="header-section-number">1.1.1.2</span> 2. <em>A distribution or range.</em></h4>
-<p>Factor in distributions and ranges to better communicate risk. For example if there is a normally distributed data set, it would be beneficial to say it ranges from a to b, with being more likely to be in the middle <span class="citation" data-cites="dieckmann2015">Dieckmann, Peters, and Gregory (<a href="references.html#ref-dieckmann2015" role="doc-biblioref">2015</a>)</span>.</p>
-</section>
-<section id="a-measure-of-statistical-significance-compared-with-a-null-hypothesis." class="level4" data-number="1.1.1.3">
-<h4 data-number="1.1.1.3" class="anchored" data-anchor-id="a-measure-of-statistical-significance-compared-with-a-null-hypothesis."><span class="header-section-number">1.1.1.3</span> 3. <em>A measure of statistical significance compared with a null hypothesis.</em></h4>
-<p>Communicate p-values and comparisons for different levels to improve comprehension for a given distribution. By providing graphics, it will increase comprehension.</p>
-</section>
-<section id="verbal-qualifiers-to-numbers." class="level4" data-number="1.1.1.4">
-<h4 data-number="1.1.1.4" class="anchored" data-anchor-id="verbal-qualifiers-to-numbers."><span class="header-section-number">1.1.1.4</span> 4. <em>Verbal qualifiers to numbers.</em></h4>
-<p>Avoid using verbal qualifiers (slightly, likely, unlikely, etc), they appear vague and lead to misinterpretation. In a study there were two groups verbal and numerical, the verbal descriptors had shown to have higher percentage of a given disease <span class="citation" data-cites="knapp2004">Knapp, Raynor, and Berry (<a href="references.html#ref-knapp2004" role="doc-biblioref">2004</a>)</span>. It is more effective to communicate using the data or using the qualifiers in addition to the data <span class="citation" data-cites="spiegelhalter2017">Spiegelhalter (<a href="references.html#ref-spiegelhalter2017" role="doc-biblioref">2017</a>)</span>.</p>
-</section>
-<section id="a-refusal-to-give-a-number-unless-the-evidence-is-good-enough." class="level4" data-number="1.1.1.5">
-<h4 data-number="1.1.1.5" class="anchored" data-anchor-id="a-refusal-to-give-a-number-unless-the-evidence-is-good-enough."><span class="header-section-number">1.1.1.5</span> 5. <em>A refusal to give a number unless the evidence is good enough.</em></h4>
-<p>Frame numbers in correspondence to statistical significance. If a reported confidence level is not strong do not assign numerical probabilities <span class="citation" data-cites="spiegelhalter2017">Spiegelhalter (<a href="references.html#ref-spiegelhalter2017" role="doc-biblioref">2017</a>)</span>.</p>
-</section>
-</section>
-</section>
-<section id="prerequisites" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">1.2</span> Prerequisites</h2>
-<p>To be able to complete this process you will need to have both R and RStudio installed. It will be beneficial to have a basic understanding on how both function.</p>
-<p>To be able to apply this process to other given data sets it is recommended to have an understanding in comparing data sets. When applying techniques it is important to understand your audience and apply the <a href="#sec-tech">techniques</a> accordingly. It is also assumed that you have an understanding of distributions, and can apply the distributions for uncertainty.</p>
+<p>For this process we have 2 new treatments, when taken a patient will see improvement within 15 days. Our company wants to find which one is more likely to see improvement within the first 5 days. Using the given <a href="index.html#sec-tech">techniques</a>, we want to communicate which one is more likely within the given timeframe. To do this we will be analyzing a simulated data set on the treatments, which contains participants in each treatment group(Trt) and how long it takes for them to see improvements(Days)</p>
+<ul>
+<li>First, we will need to read in the data set. This will be used with our future functions, but can be substituted by another data set. This data set uses two discrete variables, but you are able to use one discrete and one continuous as well.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>trtdata<span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"http://raw.githubusercontent.com/unl-statistics/annual-review-user-guide-Nathan-Swenson/main/trtdata.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Second, we will need to find the proportion in which each treatment sees improvement in the first 5 days, and then we will find the difference of the 2 proportions. This will give us the more effective treatment.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Trt2_proportion<span class="ot">&lt;-</span> <span class="fu">sum</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt2"</span>] <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt2"</span>] <span class="sc">&lt;=</span> <span class="dv">5</span>)<span class="sc">/</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>(trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt2"</span>])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>Trt1_proportion<span class="ot">&lt;-</span> <span class="fu">sum</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt1"</span>] <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt1"</span>] <span class="sc">&lt;=</span> <span class="dv">5</span>)<span class="sc">/</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>(trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt1"</span>])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>difference<span class="ot">&lt;-</span> Trt1_proportion <span class="sc">-</span> Trt2_proportion</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(difference)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.102</code></pre>
+</div>
+</div>
+<ul>
+<li>Third, we would like to calculate the p-value. This will allow us to determine whether there is a significant difference of proportions. To do this we will run a chi-squared test and then index the p_value. (where x is the treatment within the first 5 days and n is number of observations for each)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>trt_test<span class="ot">&lt;-</span> <span class="fu">prop.test</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span><span class="fu">c</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt1"</span>] <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>          trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt1"</span>] <span class="sc">&lt;=</span> <span class="dv">5</span>), </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt2"</span>] <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>          trtdata<span class="sc">$</span>Days[trtdata<span class="sc">$</span>Trt <span class="sc">==</span> <span class="st">"Trt2"</span>] <span class="sc">&lt;=</span> <span class="dv">5</span>)), </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">500</span>, <span class="dv">500</span>))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_value<span class="ot">&lt;-</span> trt_test<span class="sc">$</span>p.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.001559663</code></pre>
+</div>
+</div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-dieckmann2015" class="csl-entry" role="listitem">
-Dieckmann, Nathan F., Ellen Peters, and Robin Gregory. 2015. <span>“At Home on the Range? Lay Interpretations of Numerical Uncertainty Ranges.”</span> <em>Risk Analysis</em> 35 (7): 1281–95. <a href="https://doi.org/10.1111/risa.12358">https://doi.org/10.1111/risa.12358</a>.
-</div>
-<div id="ref-knapp2004" class="csl-entry" role="listitem">
-Knapp, P., D. K. Raynor, and D. C. Berry. 2004. <span>“Comparison of Two Methods of Presenting Risk Information to Patients about the Side Effects of Medicines.”</span> <em>BMJ Quality &amp; Safety</em> 13 (3): 176–80. <a href="https://doi.org/10.1136/qshc.2003.009076">https://doi.org/10.1136/qshc.2003.009076</a>.
-</div>
-<div id="ref-spiegelhalter2017" class="csl-entry" role="listitem">
-Spiegelhalter, David. 2017. <span>“Risk and Uncertainty Communication.”</span> <em>Annual Review of Statistics and Its Application</em> 4 (Volume 4, 2017): 31–60. <a href="https://doi.org/10.1146/annurev-statistics-010814-020148">https://doi.org/10.1146/annurev-statistics-010814-020148</a>.
-</div>
-</div>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -719,10 +710,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./generating.html" class="pagination-link" aria-label="Generating and Summarizing Data">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Generating and Summarizing Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./plotting.html" class="pagination-link" aria-label="Creating Graphics from the Summarized Data">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Creating Graphics from the Summarized Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

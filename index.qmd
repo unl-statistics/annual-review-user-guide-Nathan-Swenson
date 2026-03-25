@@ -1,34 +1,39 @@
 # Introduction
 
-How likely is it for communicated risk to be misunderstood? Risk communication is meant for technical specialists of given subjects, making it foreign to the average person by design.
+How likely is it for communicated risk to be misunderstood? Risk communication is meant for technical specialists, making it foreign to the average person by design.
 
-The presentation, framing as positive or negative and numerical construction of the risk estimate can all impact the perceived risk. This can make it quite difficult to decide how to communicate. This user guide is meant to give you an idea on how to apply techniques to efficiently communicate to a given audience.
+The presentation, framing as positive or negative, and numerical construction of the risk estimate can all impact the perceived risk. This can make it difficult to decide how to communicate to the general population. This user guide is meant to give you an idea on how to apply techniques to efficiently communicate to a given audience.
 
 ## Motivation
 
-This user guide is meant to improve your abilities in formulating and communicating a data summary to a given audience.
+This user guide is meant to improve your abilities to sumarize and communicate a data summary to a given audience.
 
 This user guide will help you apply the following techniques when communicating with the general population:
 
 ### Techniques {#sec-tech}
 
-### 1.  *Numbers given to appropriate levels of precision.* 
-Round numbers to simplify frequencies to make them more easier understood. This should only be done if the percentage difference is negligible (saying 10% instead of 10.2%) @spiegelhalter2017 . Instances may vary
+#### 1. *Numbers given to appropriate levels of precision.*
 
-### 2.  *A distribution or range.* 
-Factor in distributions and ranges to better communicate risk. For example if there is a normally distributed data set, it would be beneficial to say it ranges from a to b, with being more likely to be in the middle @spiegelhalter2017.
+Round numbers to simplify frequencies to make them more easily understood. This should only be done if the percentage difference is negligible (saying 10% instead of 10.2%) @spiegelhalter2017 . Instances may vary
 
-### 3.  *A measure of statistical signficance compared with a null hypothesis.* 
-Communicate p-values and comparisons for different levels to improve comprehension for a given distribution. By providing graphics it will increase comprehension.
+#### 2. *A distribution or range.*
 
-### 4. *Verbal qualifiers to numbers.* 
-Avoid using verbal qualifiers (slightly, likely, unlikely, etc); they appear vague and leads to misinterpretation @qualsafe. It is more effective to communicate using the data or using the words in addition to the data @spiegelhalter2017.
+Factor in distributions and ranges to better communicate risk. For example if there is a normally distributed data set, it would be beneficial to say it ranges from a to b, with being more likely to be in the middle @dieckmann2015.
 
-### 5. *A refusal to give a number unless the evidence is good enough.* 
+#### 3. *A measure of statistical significance compared with a null hypothesis.*
+
+Communicate p-values and comparisons for different levels to improve comprehension for a given distribution. By providing graphics, it will increase comprehension.
+
+#### 4. *Verbal qualifiers to numbers.*
+
+Avoid using verbal qualifiers (slightly, likely, unlikely, etc), they appear vague and lead to misinterpretation. In a study there were two groups verbal and numerical, the verbal descriptors had shown to have higher percentage of a given disease @knapp2004. It is more effective to communicate using the data or using the qualifiers in addition to the data @spiegelhalter2017.
+
+#### 5. *A refusal to give a number unless the evidence is good enough.*
+
 Frame numbers in correspondence to statistical significance. If a reported confidence level is not strong do not assign numerical probabilities @spiegelhalter2017.
 
 ## Prerequisites
 
-To be able to complete this process you will need to have both R as well as RStudio installed. It will be beneficial to have a basic understanding on how both function.
+To be able to complete this process you will need to have both R and RStudio installed. It will be beneficial to have a basic understanding on how both function.
 
-To be able to apply this process to other given datasets it is recommended to have an understanding in comparing datasets. When applying techniques it is important to understand your audience and apply formulate the techniques accordingly. It is also assumed that the you have an understanding of distributions, and can apply the distributions for uncertainty.
+To be able to apply this process to other given data sets it is recommended to have an understanding in comparing data sets. When applying techniques it is important to understand your audience and apply the [techniques](#sec-tech) accordingly. It is also assumed that you have an understanding of distributions, and can apply the distributions for uncertainty.

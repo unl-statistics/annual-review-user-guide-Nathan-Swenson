@@ -1,18 +1,19 @@
 # Applying the techniques and communicating to your audience
 
-Now that we have gathered the desired summary and mapped it into a graphic we now need to actually communicate this to an audience. We should consider the following
+Now that we have completed the data summary and plot, we now need to communicate this to an audience. We should consider the following
 
 -   Audience:
 
-Our audience is the parents of the children. We can gather from their name that they are more than likely fans of Spongebob.
+Our audience is our executive board, so it would be effective to frame it in a positive way.
 
--   [Techniques](#sec-tech)
-1.  When applying the first technique 10.2% compared to 10% is negligeble.
-2.  The distribution is roughly normal meaning that we it is most frequent for a child to become a pineapple at around 5 days.
-3.  From the given graphic we can gather that with the fading the uncertainty may range, but it is mostly going to be consistent. Our p-value that we had gotten (0.0016) is significant so we can determine that there is a difference between the 2 shows.
+-   [Techniques](#sec-tech):
+
+1.  When applying the first technique, 10.2% compared to 10% is negligible.
+2.  The distribution is roughly normal meaning that it is most frequent for a patient to see improvement at around 5 days.
+3.  From the given graphic, we can gather that with the fading, the uncertainty may range, but it is mostly going to be consistent. Our p-value that we had found (0.0016) is significant so we can determine that there is a difference between the two shows.
 4.  We will want to share the actual percentages.
 5.  The confidence level is significant, so we can report the data as given.
 
--   Finally we need to formulate our graphic and message in a cohesive manner.
+-   Finally, we need to formulate our graphic and message in a cohesive manner.
 
-Our study covers the time it takes to see improvement in a patient when given one of 2 treatment types. From the data we can report that treatment 1 had seen improvements faster at a rate 10% higher than treatment 2 (p-val = 0.0016). The graphic represents the amount of days it took for each each treatment and the height being the density across 500 observations for each. The fading of the graph accounts for the variability.
+Our study covers the time it takes to see improvement in a patient when given one of two treatment types. From the data we can report that treatment 1 had shown improvements faster at a rate of 10% higher than treatment 2 (p-val = 0.0016). The graphic represents the amount of days it took for each treatment, as well as the height being the density across 500 observations for each. The fading of the graph accounts for the variability.

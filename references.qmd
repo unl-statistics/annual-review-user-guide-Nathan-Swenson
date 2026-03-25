@@ -1,5 +1,4 @@
 # References {.unnumbered}
 
-@mason2025
-
-@spiegelhalter2017
+::: {#refs}
+:::
